@@ -20,7 +20,6 @@ function Controls() {
       <button
         onClick={() => {
           dispatch(decrementId());
-          dispatch(fetchData());
         }}
       >
         Back
@@ -28,7 +27,6 @@ function Controls() {
       <button
         onClick={() => {
           dispatch(incrementId());
-          dispatch(fetchData());
         }}
       >
         Next

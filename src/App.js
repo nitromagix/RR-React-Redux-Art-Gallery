@@ -1,12 +1,24 @@
 import "./App.css";
 
-import { useSelector } from "react-redux";
+import { useSelector, connect, useDispatch } from "react-redux";
 
-import Controls from "./components/Controls"
+import { fetchData } from "./features/artDataSlice";
+import Controls from "./components/Controls";
 import Gallery from "./components/Gallery";
+import { useEffect } from "react";
 
-function App() {
+const mapStateToProps = (state) => ({
+  objectId: state.data.objectId,
+});
+
+function App(props) {
+  const dispatch = useDispatch();
   const artData = useSelector((state) => state.data);
+
+
+  useEffect(() => {
+    dispatch(fetchData());
+  }, [props.objectId, dispatch]);
 
   return (
     <div className="App">
@@ -20,4 +32,6 @@ function App() {
   );
 }
 
-export default App;
+export default connect(mapStateToProps)(App)
+
+
