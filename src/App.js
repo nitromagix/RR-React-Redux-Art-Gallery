@@ -1,58 +1,24 @@
 import "./App.css";
 
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from "react-redux";
 
-import {incrementId, decrementId, customId, resetState} from "./features/dataSlice"
-import { fetchData } from "./features/dataSlice";
+import Controls from "./components/Controls"
+import Gallery from "./components/Gallery";
 
 function App() {
-  const dispatch = useDispatch();
   const data = useSelector((state) => state.data);
-
-  const renderImg = () => {
-    if (data.apiData) {
-      return (
-        <img
-          style={{ width: "100vw" }}
-          src={data.apiData.primaryImage}
-          alt={data.apiData.title}
-        />
-      );
-    } else {
-      return <p>image here</p>;
-    }
-  };
 
   return (
     <div className="App">
-      <div>
-        <button onClick={() => dispatch(fetchData())}>Thunk!</button>
-        <button onClick={() => dispatch(resetState())}>Clear</button>
-        <button onClick={() => dispatch(incrementId())}>Next</button>
-        <button onClick={() => dispatch(decrementId())}>Back</button>
+      <div className="controls">
+        <Controls />
       </div>
-      <input
-        value={data.objectId}
-        onChange={(e) => {
-          dispatch(customId(Number(e.target.value)));
-        }}
-      />
-      <div>
+      <div className="gallery">
         {data.objectId}
-        {renderImg()}
+        <Gallery apiData={data.apiData} />
       </div>
     </div>
   );
 }
-
-// function App() {
-//   return (
-//     <div style={{ backgroundColor: "white", color: "black" }} className="App">
-//       <Nav />
-//       <ContentWrapper />
-//       <Footer />
-//     </div>
-//   );
-// }
 
 export default App;

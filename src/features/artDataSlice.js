@@ -10,7 +10,7 @@ const initialState = {
   apiData: {},
 };
 
-export const dataSlice = createSlice({
+export const artDataSlice = createSlice({
   name: "data",
   initialState,
   reducers: {
@@ -22,7 +22,7 @@ export const dataSlice = createSlice({
       return { ...state, objectId: state.objectId + 1 };
     },
     decrementId: (state, action) => {
-      return { ...state, stateobjectId: state.objectId - 1 };
+      return { ...state, objectId: state.objectId - 1 };
     },
     customId: (state, action) => {
       return { ...state, objectId: action.payload };
@@ -34,16 +34,16 @@ export const dataSlice = createSlice({
 });
 
 export const { setApiData, incrementId, decrementId, customId, resetState } =
-  dataSlice.actions;
+  artDataSlice.actions;
 
 export const fetchData = () => {
   const fetchDataThunk = async (dispatch, getState) => {
     let state = getState();
     const response = await fetch(`${API_URL}${state.data.objectId}`);
-    const rData = await response.json();
-    dispatch(setApiData(rData));
+    const responseJson = await response.json();
+    dispatch(setApiData(responseJson));
   };
   return fetchDataThunk;
 };
 
-export default dataSlice.reducer;
+export default artDataSlice.reducer;
