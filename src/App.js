@@ -1,12 +1,12 @@
 import "./App.css";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import Controls from "./components/Controls"
 import Gallery from "./components/Gallery";
 
 function App() {
-  const data = useSelector((state) => state.data);
+  const artData = useSelector((state) => state.data);
 
   return (
     <div className="App">
@@ -14,8 +14,7 @@ function App() {
         <Controls />
       </div>
       <div className="gallery">
-        {data.objectId}
-        <Gallery apiData={data.apiData} />
+        <Gallery apiData={artData.apiData} />
       </div>
     </div>
   );

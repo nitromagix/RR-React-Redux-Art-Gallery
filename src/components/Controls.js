@@ -13,20 +13,22 @@ import {
 
 function Controls() {
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.data);
+  const artData = useSelector((state) => state.data);
 
   return (
     <Fragment>
+      <button onClick={() => dispatch(decrementId())}>Back</button>
+      <button onClick={() => dispatch(incrementId())}>Next</button>
+      <span>&nbsp;|&nbsp;</span>
       <input
-        value={data.objectId}
+        value={artData.objectId}
         onChange={(e) => {
           dispatch(customId(Number(e.target.value)));
         }}
       />
-      <button onClick={() => dispatch(fetchData())}>Thunk!</button>
+      <button onClick={() => dispatch(fetchData())}>Go Get Art!</button>
+      <span>&nbsp;|&nbsp;</span>
       <button onClick={() => dispatch(resetState())}>Clear</button>
-      <button onClick={() => dispatch(incrementId())}>Next</button>
-      <button onClick={() => dispatch(decrementId())}>Back</button>
     </Fragment>
   );
 }

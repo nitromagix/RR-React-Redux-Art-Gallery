@@ -2,15 +2,14 @@
 
 import { Fragment } from "react";
 
-function Gallery (props) {
-
+function Gallery(props) {
   const renderImg = () => {
     const apiData = props.apiData;
     console.log(apiData);
     if (props.apiData) {
       return (
         <img
-          style={{ width: "90vw" }}
+          // style={{ maxHeight: "90vh", maxWidth: "90%" }}
           src={props.apiData.primaryImage}
           alt={props.apiData.title}
         />
@@ -20,11 +19,7 @@ function Gallery (props) {
     }
   };
 
-  return (
-    <Fragment>
-      {renderImg()}
-    </Fragment>
-  )
+  return <Fragment>{renderImg()}</Fragment>;
 }
 
 export default Gallery;
