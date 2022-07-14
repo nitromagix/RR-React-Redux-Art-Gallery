@@ -17,8 +17,22 @@ function Controls() {
 
   return (
     <Fragment>
-      <button onClick={() => dispatch(decrementId())}>Back</button>
-      <button onClick={() => dispatch(incrementId())}>Next</button>
+      <button
+        onClick={() => {
+          dispatch(decrementId());
+          dispatch(fetchData());
+        }}
+      >
+        Back
+      </button>
+      <button
+        onClick={() => {
+          dispatch(incrementId());
+          dispatch(fetchData());
+        }}
+      >
+        Next
+      </button>
       <span>&nbsp;|&nbsp;</span>
       <input
         value={artData.objectId}
@@ -26,7 +40,7 @@ function Controls() {
           dispatch(customId(Number(e.target.value)));
         }}
       />
-      <button onClick={() => dispatch(fetchData())}>Go Get Art!</button>
+      <button onClick={() => dispatch(fetchData())}>Find</button>
       <span>&nbsp;|&nbsp;</span>
       <button onClick={() => dispatch(resetState())}>Clear</button>
     </Fragment>

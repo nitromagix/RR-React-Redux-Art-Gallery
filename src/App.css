@@ -8,6 +8,10 @@ body {
 }
 
 .controls {
+  margin: 5px;
+  padding: 5px;
+  border:1px solid #aaaaaa;
+  border-radius: 2px;
 }
 
 .controls > span {

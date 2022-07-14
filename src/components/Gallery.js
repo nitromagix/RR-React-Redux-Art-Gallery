@@ -5,17 +5,29 @@ import { Fragment } from "react";
 function Gallery(props) {
   const renderImg = () => {
     const apiData = props.apiData;
-    console.log(apiData);
-    if (props.apiData) {
+    if (apiData && apiData.objectID) {
       return (
-        <img
-          // style={{ maxHeight: "90vh", maxWidth: "90%" }}
-          src={props.apiData.primaryImage}
-          alt={props.apiData.title}
-        />
+        <Fragment>
+          <p>
+            {apiData.objectID} - <strong>{apiData.title}</strong>{" "}
+            {apiData.artistDisplayName}
+          </p>
+          {apiData.primaryImage ? (
+            <img src={apiData.primaryImage} alt={apiData.title} />
+          ) : (
+            <div>
+              <p>Sorry, there is no image available</p>
+            </div>
+          )}
+        </Fragment>
       );
     } else {
-      return <p>image here</p>;
+      return (
+        <p>
+          Please use the controls above to view artwork from{" "}
+          <a href="metmuseum.org">metmuseum.org</a>
+        </p>
+      );
     }
   };
 
